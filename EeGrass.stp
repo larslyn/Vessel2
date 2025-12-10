@@ -1,0 +1,721 @@
+;	STMicroelectronics Project file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Project]
+Name=EeGrass
+Toolset=STM8 Cosmic
+
+[Config]
+0=Config.0
+1=Config.1
+
+[Config.0]
+ConfigName=Debug
+Target=Eegrass.elf
+OutputFolder=Debug
+Debug=$(TargetFName)
+
+[Config.1]
+ConfigName=Release
+Target=Eegrass.elf
+OutputFolder=Release
+Debug=$(TargetFName)
+
+[Root]
+ElemType=Project
+PathName=EeGrass
+Child=Root.Source Files
+Config.0=Root.Config.0
+Config.1=Root.Config.1
+
+[Root.Config.0]
+Settings.0.0=Root.Config.0.Settings.0
+Settings.0.1=Root.Config.0.Settings.1
+Settings.0.2=Root.Config.0.Settings.2
+Settings.0.3=Root.Config.0.Settings.3
+Settings.0.4=Root.Config.0.Settings.4
+Settings.0.5=Root.Config.0.Settings.5
+Settings.0.6=Root.Config.0.Settings.6
+Settings.0.7=Root.Config.0.Settings.7
+Settings.0.8=Root.Config.0.Settings.8
+
+[Root.Config.1]
+Settings.1.0=Root.Config.1.Settings.0
+Settings.1.1=Root.Config.1.Settings.1
+Settings.1.2=Root.Config.1.Settings.2
+Settings.1.3=Root.Config.1.Settings.3
+Settings.1.4=Root.Config.1.Settings.4
+Settings.1.5=Root.Config.1.Settings.5
+Settings.1.6=Root.Config.1.Settings.6
+Settings.1.7=Root.Config.1.Settings.7
+Settings.1.8=Root.Config.1.Settings.8
+
+[Root.Config.0.Settings.0]
+String.6.0=2025,7,6,12,38,53
+String.100.0=ST Assembler Linker
+String.100.1=ST7 Cosmic
+String.100.2=STM8 Cosmic
+String.100.3=ST7 Metrowerks V1.1
+String.100.4=Raisonance
+String.101.0=STM8 Cosmic
+String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8
+String.103.0=
+String.104.0=Hstm8
+String.105.0=Lib
+String.106.0=Debug
+String.107.0=Eegrass.elf
+Int.108=1
+
+[Root.Config.0.Settings.1]
+String.6.0=2016,1,14,16,18,0
+String.100.0=$(TargetFName)
+String.101.0=
+String.102.0=
+String.103.0=.\;src;inc;rtu\inc;rtu\src;stack\inc;stack\src;
+
+[Root.Config.0.Settings.2]
+String.2.0=
+String.6.0=2025,12,10,11,46,54
+String.100.0=STM8S207R8
+
+[Root.Config.0.Settings.3]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +warn +mods -customDebCompat -customOpt-no -customC-pp -customLst -l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,54,35
+
+[Root.Config.0.Settings.4]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Config.0.Settings.5]
+String.2.0=Running Pre-Link step
+String.6.0=2016,1,14,16,18,0
+String.8.0=
+
+[Root.Config.0.Settings.6]
+String.2.0=Running Linker
+String.3.0=clnk $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeInteger -fakeOutFileEegrass.elf -fakeRunConv -fakeStartupcrtsi.sm8 -fakeSemiAutoGen -fakeVectFilestm8_interrupt_vector.c -customMapFile -customMapFile-m$(OutputPath)$(TargetSName).map -customMapAddress -customCfgFile$(OutputPath)$(TargetSName).lkf 
+String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
+String.4.0=$(OutputPath)$(TargetFName)
+String.5.0=
+String.6.0=2025,12,10,11,46,54
+String.100.0=
+String.101.0=crtsi.st7
+String.102.0=+seg .const -b 0x8080 -m 0xff80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x4000 -m 0x600 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x1300 -n .data 
+String.102.8=+seg .bss -a .data -n .bss
+String.103.0=Code,Constants[0x8080-0x17fff]=.const,.text
+String.103.1=Eeprom[0x4000-0x45ff]=.eeprom
+String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
+String.103.3=Ram[0x100-0x13ff]=.data,.bss
+String.104.0=0x17ff
+String.105.0=libis.sm8;libm.sm8
+Int.0=0
+Int.1=0
+
+[Root.Config.0.Settings.7]
+String.2.0=Running Post-Build step
+String.3.0=chex -o $(OutputPath)$(TargetSName).s19 $(OutputPath)$(TargetSName).sm8
+String.6.0=2016,1,14,16,18,0
+
+[Root.Config.0.Settings.8]
+String.2.0=Performing Custom Build on $(InputFile)
+String.6.0=2016,1,14,16,18,0
+
+[Root.Config.1.Settings.0]
+String.6.0=2025,7,6,12,41,1
+String.100.0=ST Assembler Linker
+String.100.1=ST7 Cosmic
+String.100.2=STM8 Cosmic
+String.100.3=ST7 Metrowerks V1.1
+String.100.4=Raisonance
+String.101.0=STM8 Cosmic
+String.102.0=C:\Program Files (x86)\COSMIC\32K_Compilers
+String.103.0=
+String.104.0=Hstm8
+String.105.0=Lib
+String.106.0=Release
+String.107.0=Eegrass.elf
+Int.108=0
+
+[Root.Config.1.Settings.1]
+String.6.0=2016,1,14,16,18,0
+String.100.0=$(TargetFName)
+String.101.0=
+String.102.0=
+String.103.0=.\;src;inc;rtu\inc;rtu\src;stack\inc;stack\src;
+
+[Root.Config.1.Settings.2]
+String.2.0=
+String.6.0=2025,12,10,11,46,54
+String.100.0=STM8S207R8
+
+[Root.Config.1.Settings.3]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods -customC-pp -customLst-l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,59,54
+
+[Root.Config.1.Settings.4]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Config.1.Settings.5]
+String.2.0=Running Pre-Link step
+String.6.0=2016,1,14,16,18,0
+String.8.0=
+
+[Root.Config.1.Settings.6]
+String.2.0=Running Linker
+String.3.0=clnk $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeInteger -fakeOutFileEegrass.elf -fakeRunConv -fakeStartupcrtsi.sm8 -fakeSemiAutoGen -fakeVectFilestm8_interrupt_vector.c -customMapFile -customMapFile-m$(OutputPath)$(TargetSName).map -customMapAddress -customCfgFile$(OutputPath)$(TargetSName).lkf 
+String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
+String.4.0=$(OutputPath)$(TargetFName)
+String.5.0=$(OutputPath)Eegrass.elf $(OutputPath)$(TargetSName).map
+String.6.0=2025,12,10,11,46,54
+String.100.0=
+String.101.0=crtsi.st7
+String.102.0=+seg .const -b 0x8080 -m 0xff80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x4000 -m 0x600 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x1300 -n .data 
+String.102.8=+seg .bss -a .data -n .bss
+String.103.0=Code,Constants[0x8080-0x17fff]=.const,.text
+String.103.1=Eeprom[0x4000-0x45ff]=.eeprom
+String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
+String.103.3=Ram[0x100-0x13ff]=.data,.bss
+String.104.0=0x17ff
+String.105.0=libis.sm8;libm.sm8
+Int.0=0
+Int.1=0
+
+[Root.Config.1.Settings.7]
+String.2.0=Running Post-Build step
+String.3.0=chex -o $(OutputPath)$(TargetSName).s19 $(OutputPath)$(TargetSName).sm8
+String.6.0=2016,1,14,16,18,0
+
+[Root.Config.1.Settings.8]
+String.2.0=Performing Custom Build on $(InputFile)
+String.6.0=2016,1,14,16,18,0
+
+[Root.Source Files]
+ElemType=Folder
+PathName=Source Files
+Child=Root.Source Files.src\eeprom.c
+Next=Root.Include Files
+Config.0=Root.Source Files.Config.0
+Config.1=Root.Source Files.Config.1
+
+[Root.Source Files.Config.0]
+Settings.0.0=Root.Source Files.Config.0.Settings.0
+Settings.0.1=Root.Source Files.Config.0.Settings.1
+Settings.0.2=Root.Source Files.Config.0.Settings.2
+Settings.0.3=Root.Source Files.Config.0.Settings.3
+
+[Root.Source Files.Config.1]
+Settings.1.0=Root.Source Files.Config.1.Settings.0
+Settings.1.1=Root.Source Files.Config.1.Settings.1
+Settings.1.2=Root.Source Files.Config.1.Settings.2
+Settings.1.3=Root.Source Files.Config.1.Settings.3
+
+[Root.Source Files.Config.0.Settings.0]
+String.6.0=2016,1,14,16,18,0
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root.Source Files.Config.0.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +warn +mods -customDebCompat -customOpt-no -customC-pp -customLst -l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,54,35
+
+[Root.Source Files.Config.0.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Source Files.Config.0.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.Source Files.Config.1.Settings.0]
+String.6.0=2016,1,14,16,18,0
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root.Source Files.Config.1.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods -customC-pp -customLst-l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,59,54
+
+[Root.Source Files.Config.1.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Source Files.Config.1.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.Source Files.src\eeprom.c]
+ElemType=File
+PathName=src\eeprom.c
+Next=Root.Source Files.src\main.c
+
+[Root.Source Files.src\main.c]
+ElemType=File
+PathName=src\main.c
+Next=Root.Source Files.src\stm8_hw.c
+
+[Root.Source Files.src\stm8_hw.c]
+ElemType=File
+PathName=src\stm8_hw.c
+Next=Root.Source Files.src\stm8s_adc2.c
+
+[Root.Source Files.src\stm8s_adc2.c]
+ElemType=File
+PathName=src\stm8s_adc2.c
+Next=Root.Source Files.src\stm8s_exti.c
+
+[Root.Source Files.src\stm8s_exti.c]
+ElemType=File
+PathName=src\stm8s_exti.c
+Next=Root.Source Files.src\stm8s_gpio.c
+
+[Root.Source Files.src\stm8s_gpio.c]
+ElemType=File
+PathName=src\stm8s_gpio.c
+Next=Root.Source Files.src\stm8s_i2c.c
+
+[Root.Source Files.src\stm8s_i2c.c]
+ElemType=File
+PathName=src\stm8s_i2c.c
+Next=Root.Source Files.src\stm8s_it.c
+
+[Root.Source Files.src\stm8s_it.c]
+ElemType=File
+PathName=src\stm8s_it.c
+Next=Root.Source Files.src\stm8s_iwdg.c
+
+[Root.Source Files.src\stm8s_iwdg.c]
+ElemType=File
+PathName=src\stm8s_iwdg.c
+Next=Root.Source Files.src\stm8s_rs485.c
+
+[Root.Source Files.src\stm8s_rs485.c]
+ElemType=File
+PathName=src\stm8s_rs485.c
+Next=Root.Source Files.src\stm8s_tim1.c
+
+[Root.Source Files.src\stm8s_tim1.c]
+ElemType=File
+PathName=src\stm8s_tim1.c
+Next=Root.Source Files.stm8_interrupt_vector.c
+
+[Root.Source Files.stm8_interrupt_vector.c]
+ElemType=File
+PathName=stm8_interrupt_vector.c
+
+[Root.Include Files]
+ElemType=Folder
+PathName=Include Files
+Child=Root.Include Files.inc\eeprom.h
+Next=Root.rtu
+Config.0=Root.Include Files.Config.0
+Config.1=Root.Include Files.Config.1
+
+[Root.Include Files.Config.0]
+Settings.0.0=Root.Include Files.Config.0.Settings.0
+Settings.0.1=Root.Include Files.Config.0.Settings.1
+Settings.0.2=Root.Include Files.Config.0.Settings.2
+Settings.0.3=Root.Include Files.Config.0.Settings.3
+
+[Root.Include Files.Config.1]
+Settings.1.0=Root.Include Files.Config.1.Settings.0
+Settings.1.1=Root.Include Files.Config.1.Settings.1
+Settings.1.2=Root.Include Files.Config.1.Settings.2
+Settings.1.3=Root.Include Files.Config.1.Settings.3
+
+[Root.Include Files.Config.0.Settings.0]
+String.6.0=2016,1,14,16,18,0
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root.Include Files.Config.0.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +warn +mods -customDebCompat -customOpt-no -customC-pp -customLst -l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,54,35
+
+[Root.Include Files.Config.0.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Include Files.Config.0.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.Include Files.Config.1.Settings.0]
+String.6.0=2016,1,14,16,18,0
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root.Include Files.Config.1.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods -customC-pp -customLst-l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,59,54
+
+[Root.Include Files.Config.1.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.Include Files.Config.1.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.Include Files.inc\eeprom.h]
+ElemType=File
+PathName=inc\eeprom.h
+Next=Root.Include Files.inc\stm8_hw.h
+
+[Root.Include Files.inc\stm8_hw.h]
+ElemType=File
+PathName=inc\stm8_hw.h
+Next=Root.Include Files.inc\stm8s.h
+
+[Root.Include Files.inc\stm8s.h]
+ElemType=File
+PathName=inc\stm8s.h
+Next=Root.Include Files.inc\stm8s_adc2.h
+
+[Root.Include Files.inc\stm8s_adc2.h]
+ElemType=File
+PathName=inc\stm8s_adc2.h
+Next=Root.Include Files.inc\stm8s_conf.h
+
+[Root.Include Files.inc\stm8s_conf.h]
+ElemType=File
+PathName=inc\stm8s_conf.h
+Next=Root.Include Files.inc\stm8s_exti.h
+
+[Root.Include Files.inc\stm8s_exti.h]
+ElemType=File
+PathName=inc\stm8s_exti.h
+Next=Root.Include Files.inc\stm8s_gpio.h
+
+[Root.Include Files.inc\stm8s_gpio.h]
+ElemType=File
+PathName=inc\stm8s_gpio.h
+Next=Root.Include Files.inc\stm8s_i2c.h
+
+[Root.Include Files.inc\stm8s_i2c.h]
+ElemType=File
+PathName=inc\stm8s_i2c.h
+Next=Root.Include Files.inc\stm8s_it.h
+
+[Root.Include Files.inc\stm8s_it.h]
+ElemType=File
+PathName=inc\stm8s_it.h
+Next=Root.Include Files.inc\stm8s_iwdg.h
+
+[Root.Include Files.inc\stm8s_iwdg.h]
+ElemType=File
+PathName=inc\stm8s_iwdg.h
+Next=Root.Include Files.inc\stm8s_rs485.h
+
+[Root.Include Files.inc\stm8s_rs485.h]
+ElemType=File
+PathName=inc\stm8s_rs485.h
+Next=Root.Include Files.inc\stm8s_tim1.h
+
+[Root.Include Files.inc\stm8s_tim1.h]
+ElemType=File
+PathName=inc\stm8s_tim1.h
+
+[Root.rtu]
+ElemType=Folder
+PathName=rtu
+Child=Root.rtu.rtu\inc
+Next=Root.stack
+Config.0=Root.rtu.Config.0
+Config.1=Root.rtu.Config.1
+
+[Root.rtu.Config.0]
+Settings.0.0=Root.rtu.Config.0.Settings.0
+Settings.0.1=Root.rtu.Config.0.Settings.1
+Settings.0.2=Root.rtu.Config.0.Settings.2
+Settings.0.3=Root.rtu.Config.0.Settings.3
+
+[Root.rtu.Config.1]
+Settings.1.0=Root.rtu.Config.1.Settings.0
+Settings.1.1=Root.rtu.Config.1.Settings.1
+Settings.1.2=Root.rtu.Config.1.Settings.2
+Settings.1.3=Root.rtu.Config.1.Settings.3
+
+[Root.rtu.Config.0.Settings.0]
+String.6.0=2016,3,1,13,34,21
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root.rtu.Config.0.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +warn +mods -customDebCompat -customOpt-no -customC-pp -customLst -l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,54,35
+
+[Root.rtu.Config.0.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.rtu.Config.0.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.rtu.Config.1.Settings.0]
+String.6.0=2016,3,1,13,34,21
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root.rtu.Config.1.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods -customC-pp -customLst-l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,59,54
+
+[Root.rtu.Config.1.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.rtu.Config.1.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.rtu.rtu\inc]
+ElemType=Folder
+PathName=rtu\inc
+Child=Root.rtu.rtu\inc.rtu\inc\s_mbcrc.h
+Next=Root.rtu.rtu\src
+
+[Root.rtu.rtu\inc.rtu\inc\s_mbcrc.h]
+ElemType=File
+PathName=rtu\inc\s_mbcrc.h
+Next=Root.rtu.rtu\inc.rtu\inc\s_mbrtu.h
+
+[Root.rtu.rtu\inc.rtu\inc\s_mbrtu.h]
+ElemType=File
+PathName=rtu\inc\s_mbrtu.h
+
+[Root.rtu.rtu\src]
+ElemType=Folder
+PathName=rtu\src
+Child=Root.rtu.rtu\src.rtu\src\s_mbcrc.c
+
+[Root.rtu.rtu\src.rtu\src\s_mbcrc.c]
+ElemType=File
+PathName=rtu\src\s_mbcrc.c
+Next=Root.rtu.rtu\src.rtu\src\s_mbrtu.c
+
+[Root.rtu.rtu\src.rtu\src\s_mbrtu.c]
+ElemType=File
+PathName=rtu\src\s_mbrtu.c
+
+[Root.stack]
+ElemType=Folder
+PathName=stack
+Child=Root.stack.stack\inc
+Config.0=Root.stack.Config.0
+Config.1=Root.stack.Config.1
+
+[Root.stack.Config.0]
+Settings.0.0=Root.stack.Config.0.Settings.0
+Settings.0.1=Root.stack.Config.0.Settings.1
+Settings.0.2=Root.stack.Config.0.Settings.2
+Settings.0.3=Root.stack.Config.0.Settings.3
+
+[Root.stack.Config.1]
+Settings.1.0=Root.stack.Config.1.Settings.0
+Settings.1.1=Root.stack.Config.1.Settings.1
+Settings.1.2=Root.stack.Config.1.Settings.2
+Settings.1.3=Root.stack.Config.1.Settings.3
+
+[Root.stack.Config.0.Settings.0]
+String.6.0=2016,3,1,13,35,3
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root.stack.Config.0.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +warn +mods -customDebCompat -customOpt-no -customC-pp -customLst -l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,54,35
+
+[Root.stack.Config.0.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.stack.Config.0.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.stack.Config.1.Settings.0]
+String.6.0=2016,3,1,13,35,3
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root.stack.Config.1.Settings.1]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods -customC-pp -customLst-l -istack\inc -irtu\inc -iinc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2025,7,6,2,59,54
+
+[Root.stack.Config.1.Settings.2]
+String.2.0=Assembling $(InputFile)...
+String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2016,1,14,16,18,0
+
+[Root.stack.Config.1.Settings.3]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2016,1,14,16,18,0
+
+[Root.stack.stack\inc]
+ElemType=Folder
+PathName=stack\inc
+Child=Root.stack.stack\inc.stack\inc\s_mb.h
+Next=Root.stack.stack\src
+
+[Root.stack.stack\inc.stack\inc\s_mb.h]
+ElemType=File
+PathName=stack\inc\s_mb.h
+Next=Root.stack.stack\inc.stack\inc\s_mbconfig.h
+
+[Root.stack.stack\inc.stack\inc\s_mbconfig.h]
+ElemType=File
+PathName=stack\inc\s_mbconfig.h
+Next=Root.stack.stack\inc.stack\inc\s_mbfunc.h
+
+[Root.stack.stack\inc.stack\inc\s_mbfunc.h]
+ElemType=File
+PathName=stack\inc\s_mbfunc.h
+Next=Root.stack.stack\inc.stack\inc\s_mbproto.h
+
+[Root.stack.stack\inc.stack\inc\s_mbproto.h]
+ElemType=File
+PathName=stack\inc\s_mbproto.h
+Next=Root.stack.stack\inc.stack\inc\s_od.h
+
+[Root.stack.stack\inc.stack\inc\s_od.h]
+ElemType=File
+PathName=stack\inc\s_od.h
+Next=Root.stack.stack\inc.stack\inc\s_portevent.h
+
+[Root.stack.stack\inc.stack\inc\s_portevent.h]
+ElemType=File
+PathName=stack\inc\s_portevent.h
+
+[Root.stack.stack\src]
+ElemType=Folder
+PathName=stack\src
+Child=Root.stack.stack\src.stack\src\s_mb.c
+
+[Root.stack.stack\src.stack\src\s_mb.c]
+ElemType=File
+PathName=stack\src\s_mb.c
+Next=Root.stack.stack\src.stack\src\s_mbfuncholding.c
+
+[Root.stack.stack\src.stack\src\s_mbfuncholding.c]
+ElemType=File
+PathName=stack\src\s_mbfuncholding.c
+Next=Root.stack.stack\src.stack\src\s_od.c
+
+[Root.stack.stack\src.stack\src\s_od.c]
+ElemType=File
+PathName=stack\src\s_od.c
+Next=Root.stack.stack\src.stack\src\s_portevent.c
+
+[Root.stack.stack\src.stack\src\s_portevent.c]
+ElemType=File
+PathName=stack\src\s_portevent.c

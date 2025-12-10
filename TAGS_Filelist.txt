@@ -1,0 +1,41 @@
+src\eeprom.c
+src\main.c
+src\stm8_hw.c
+src\stm8s_adc2.c
+src\stm8s_exti.c
+src\stm8s_gpio.c
+src\stm8s_i2c.c
+src\stm8s_it.c
+src\stm8s_iwdg.c
+src\stm8s_rs485.c
+src\stm8s_tim1.c
+stm8_interrupt_vector.c
+inc\eeprom.h
+inc\stm8_hw.h
+inc\stm8s.h
+inc\stm8s_adc2.h
+inc\stm8s_conf.h
+inc\stm8s_exti.h
+inc\stm8s_gpio.h
+inc\stm8s_i2c.h
+inc\stm8s_it.h
+inc\stm8s_iwdg.h
+inc\stm8s_rs485.h
+inc\stm8s_tim1.h
+rtu\inc\s_mbcrc.h
+rtu\inc\s_mbrtu.h
+rtu\src\s_mbcrc.c
+rtu\src\s_mbrtu.c
+stack\inc\s_mb.h
+stack\inc\s_mbconfig.h
+stack\inc\s_mbfunc.h
+stack\inc\s_mbproto.h
+stack\inc\s_od.h
+stack\inc\s_portevent.h
+stack\src\s_mb.c
+stack\src\s_mbfuncholding.c
+stack\src\s_od.c
+stack\src\s_portevent.c
+..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\mods.h
+..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\stdlib.h
+..\..\..\..\..\program files (x86)\cosmic\fse_compilers\cxstm8\hstm8\string.h
