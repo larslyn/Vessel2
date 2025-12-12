@@ -46,7 +46,19 @@ void initHW(void)
   GPIO_Init(GPIOD, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_FAST);
 
   
-  /* TACHO Sensor *********************************/
+  /* Power enables *********************************/
+  /*ENA_24V_S1 -- Port PD7 (STM8S207Rx pin 64) */
+  GPIO_Init(PORT_ENA_24V_S1, PIN_ENA_RELAY1, GPIO_MODE_OUT_PP_LOW_FAST);
+
+
+  /* Led Tower *************************************/
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_RED,    GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_YELLOW, GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_GREEN,  GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_BLUE,   GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_WHITE,  GPIO_MODE_OUT_PP_LOW_FAST);
+  GPIO_Init(PORT_LED_TOWER, PIN_LED_TOWER_BUZZ,   GPIO_MODE_OUT_PP_LOW_FAST);
+
   /*input Tacho1 -- Port PB6 (STM8S207Cx pin 16) */
   //GPIO_Init(PORT_SENSOR_CHA,  PIN_SENSOR_CHA, GPIO_MODE_IN_PU_IT);    //Input pull-up
   
@@ -118,6 +130,25 @@ void initHW(void)
   GPIO_Init(PORT_LED2, PIN_LED2, GPIO_MODE_OUT_PP_LOW_FAST);
 
 }
+
+/*******************************************************************************
+ * @brief  Read state of TOP sensor, inverted NPN
+ * @param  None
+ * @retval state of TopSensor, return set if metal is placed infront of sensor
+ ******************************************************************************/
+void ena_24V_S1(FunctionalState state)
+{
+  if(state == ENABLE)
+  {
+    GPIO_WriteHigh(PORT_ENA_24V_S1, PIN_ENA_RELAY1);
+  }
+  else
+  {
+    GPIO_WriteLow(PORT_ENA_24V_S1, PIN_ENA_RELAY1);
+  }
+}
+
+
 
 #if 0
 

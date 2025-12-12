@@ -11,6 +11,7 @@
 #include "eeprom.h"
 
 #include "stm8s_rs485.h"
+#include "stm8s_vessel.h"
 
 #include "s_mb.h"
 
@@ -85,8 +86,8 @@ void main(void)
   //EE_ReadByte(RS485_ID_ADRS,     &ucSlaveId);
   EE_ReadByte(RS485_TERM_ADRS,   &ucTermination);
 
-  //ucSlaveId = (uint8_t)(0x0A + GetHwIdPinsAdrs());
-  ucSlaveId = 20;
+  ucSlaveId = (uint8_t)(0x20 + GetHwIdPinsAdrs());
+  
 
 #if 0
   //initialize ADC1
@@ -111,6 +112,7 @@ void main(void)
   //ADC2_StartConversion();
   //turn ON/OFF bus termination
   
+  init_vessel();        //initialize vessel
   TIM1_Config();        //Interrupt every 50ms 
   //I2C_Config();         //Initialize I2C, also set altenate function pins to I2C 
   //INA226_Init();        //set calibration register in INA226
@@ -210,11 +212,11 @@ uint8_t GetHwIdPinsAdrs(void)
 {
   uint8_t tmp;
 
-  //read port and mask out (pin PC5...PC2 => 0011.1100b)
+  //read port and mask out (pin PF7...PC4 => 1111.0000b)
   tmp = GPIO_ReadInputData(PORT_IDx);
-	tmp ^= 0x3C;
+	tmp ^= 0xF0;
 	
-  tmp = (uint8_t)((tmp >> 2) & 0x0F);
+  tmp = (uint8_t)((tmp >> 4) & 0x0F);
 
   return tmp;
 }

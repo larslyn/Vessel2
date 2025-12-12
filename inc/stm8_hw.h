@@ -38,53 +38,47 @@
 #define PORT_RS485_RX_DISABLE   GPIOD         // /RE -> Receiver enable, active low
 #define PIN_RS485_RX_DISABLE    GPIO_PIN_4
 
-/* TACHO Sensor *********************************/
-//#define PORT_SENSOR_CHA GPIOB           //Tacho 1
-//#define PIN_SENSOR_CHA  GPIO_PIN_6
+/* Hoist Inputs*********************************/
+#define PORT_HOIST GPIOB           
+#define PIN_HOIST_IN0  GPIO_PIN_0
+#define PIN_HOIST_IN1  GPIO_PIN_1
+#define PIN_HOIST_IN2  GPIO_PIN_2
+#define PIN_HOIST_IN3  GPIO_PIN_3
+#define PIN_HOIST_IN4  GPIO_PIN_4
+#define PIN_HOIST_IN5  GPIO_PIN_5
+#define PIN_HOIST_IN6  GPIO_PIN_6
+#define PIN_HOIST_IN7  GPIO_PIN_7
 
-//#define PORT_SENSOR_CHB GPIOB           //Tacho 2
-//#define PIN_SENSOR_CHB  GPIO_PIN_7
+/* LED tower outputs ***************************/
+#define PORT_LED_TOWER GPIOG           
+#define PIN_LED_TOWER_RED    GPIO_PIN_0
+#define PIN_LED_TOWER_YELLOW GPIO_PIN_1
+#define PIN_LED_TOWER_GREEN  GPIO_PIN_2
+#define PIN_LED_TOWER_BLUE   GPIO_PIN_3
+#define PIN_LED_TOWER_WHITE  GPIO_PIN_4
+#define PIN_LED_TOWER_BUZZ   GPIO_PIN_5
+#define PIN_LED_TOWER_NC1    GPIO_PIN_6
+#define PIN_LED_TOWER_NC2    GPIO_PIN_7
 
-/*Motor Control ********************************/
-//#define PORT_M_CTRL GPIOD              
-//#define PIN_M_PWM   GPIO_PIN_2
-//#define PIN_M_DIR   GPIO_PIN_3
-//#define PIN_M_ENA   GPIO_PIN_4
+/* Power enables *******************************/
+#define PORT_ENA_RELAY1 GPIOA           
+#define PIN_ENA_RELAY1  GPIO_PIN_1
 
-/*Motor Control *** STM8S207 *******************/
-//#define PORT_M_PWR_ENA GPIOB
-//#define PIN_M_PWR_ENA GPIO_PIN_2
+#define PORT_ENA_RELAY2 GPIOA           
+#define PIN_ENA_RELAY2  GPIO_PIN_2
 
-//#define PORT_M_CTRL GPIOC
-//#define PIN_M_IN1  GPIO_PIN_1
-//#define PIN_M_IN2  GPIO_PIN_2
-//#define PIN_M_INH1 GPIO_PIN_3
-//#define PIN_M_INH2 GPIO_PIN_4
+#define PORT_ENA_24V_S1 GPIOD           
+#define PIN_ENA_24V_S1  GPIO_PIN_7
 
+#define PORT_ENA_5V_S1  GPIOE           
+#define PIN_ENA_5V_S1   GPIO_PIN_6
 
-/*Inductive sensors *****************************/
-//#define PORT_SENSORx    GPIOA
-//#define PIN_SENSOR_TOP  GPIO_PIN_1
-//#define PIN_SENSOR_BOT  GPIO_PIN_2
-//#define PIN_SENSOR_BAG  GPIO_PIN_2
-
-/*miscellaneous *********************************/
-//#define PORT_ALERT GPIOA
-//#define PIN_ALERT  GPIO_PIN_1
-
-//#define PORT_WATER_LEVEL GPIOB
-//#define PIN_WATER_LEVEL  GPIO_PIN_3
-
-//#define PORT_TEMPERATURE GPIOB
-//#define PIN_TEMPERATURE  GPIO_PIN_4
+#define PORT_ENA_LIGHT GPIOE           
+#define PIN_ENA_LIGHT  GPIO_PIN_7
 
 
-//#define PORT_POWER_ENABLE GPIOE
-//#define PIN_POWER_ENABLE  GPIO_PIN_6
 
 /* Debug pin ************************************/
-//#define PORT_TP1 GPIOA
-//#define PIN_TP1  GPIO_PIN_2
 
 #define PORT_LED1 GPIOF
 #define PIN_LED1  GPIO_PIN_3
@@ -95,8 +89,8 @@
 
 /* Exported functions ------------------------------------------------------- */
 void initHW(void);
-//BitStatus getTopSensorState(void);
-//BitStatus getBotSensorState(void);
+void ena_24V_S1(FunctionalState state);
+
 
 
 
